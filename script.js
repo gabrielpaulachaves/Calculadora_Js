@@ -1,21 +1,35 @@
 const display = document.getElementById('display')
+let resultadoexibido = false;
 
 function AppendToDisplay(input){
+    if(resultadoexibido){
+
+        if(!isNaN(input)){
+            display.value = input;
+        }else{
+            display.value += input; 
+        }
+        resultadoexibido = false;
+        return;
+    }
+
    display.value += input; 
 }
 
 function Calcular(){
     try{
-    display.value = eval(display.value);
-     /*eval() pega uma expressão tipo 1, 2,3 e avalia e da o resultado. Ele interpreta a string como código */ 
+    display.value = eval(display.value);  /*Ele interpreta a string como código */
+    resultadoexibido = true;
     } 
     catch(error){
         display.value = "Erro";
+        resultadoexibido = true;
     }
 }
 
 function Limpar(){ 
     display.value = "";
+    resultadoexibido = false;
 }
 
 
